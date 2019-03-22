@@ -4,8 +4,12 @@
 require_once("../Initializer.php");
 
 
-class algoTest extends PHPUnit\Framework\TestCase
+class AlgoTest extends PHPUnit\Framework\TestCase
 {
+
+    public function testPopulationLagon() {
+
+    }
     public function testInitAnemones() {
         //given
         $fileName = "../../doc/anemone_test.ini";

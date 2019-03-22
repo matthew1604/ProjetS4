@@ -4,10 +4,11 @@ require_once 'Anemone.php';
 require_once 'Horloge.php';
 require_once 'Utils.php';
 require_once 'Event.php';
+require_once 'PopulationCounter.php';
 
 ini_set('max_execution_time', 300);
 
-class algo
+class Algo
 {
 
     private $horloge;
@@ -49,7 +50,7 @@ class algo
                 if ($t == 0) {
                     echo ("Lagon id : population");
 
-                    $lp = $this->getAll_population_lagon();
+                    $lp = PopulationCounter::getAll_population_lagon($this->lagons,$this->anemones);
                     foreach ($this->lagons as $l) {
                         echo ("<br>" . $l->getId() . " : " . $lp[$l->getId()]);
                     }
@@ -83,7 +84,7 @@ class algo
             $this->appliqueEvent($e[0][0], $e[1], $echoooo);
             $this->updateHorloge($e[0][0]);
 
-            $lp = $this->getAll_population_lagon();
+            $lp = PopulationCounter::getAll_population_lagon($this->lagons,$this->anemones);
             $lp[count($lp) + 1] = $t;
             Utils::appendInFile('../output/lagonsPopulationT.ini', $lp);
 
@@ -266,7 +267,7 @@ class algo
         return $l->get("rL$la_id")->getRate();
     }
 
-    public function getAll_population_lagon ()
+    /*public function getAll_population_lagon ()
     {
         $lagons_population = array();
 
@@ -276,12 +277,12 @@ class algo
         }
 
         return $lagons_population;
-    }
+    }*/
 
     /*
      * Retourne la population totale d'un lagon
      */
-    public function population_lagon ($l_id)
+    /*public function population_lagon ($l_id)
     {
         $population = 0;
         foreach ($this->anemones as $a) {
@@ -294,7 +295,7 @@ class algo
             }
         }
         return $population;
-    }
+    }*/
 
     /*
      * Retourne le nombre de femelle dans un lagon
@@ -534,7 +535,7 @@ class algo
         $time_start = microtime(true);
 
         // Test
-        $t = new algo();
+        $t = new Algo();
         $t->startSimulation($tmax, $echooo);
 
         $time_end = microtime(true);
@@ -544,7 +545,7 @@ class algo
 
     public static function testHorloge ()
     {
-        $t = new algo();
+        $t = new Algo();
         $t->initLagon('../doc/lagon.ini');
         $t->initAnemones('../doc/anemone.ini');
         $t->initHorloge();
@@ -556,16 +557,16 @@ class algo
 
 if (! isset($testGraph)) {
     if (! isset($tmax)) {
-        algo::testSimu(5, 1);
+        Algo::testSimu(5, 1);
     } else
-        algo::testSimu($tmax, 1);
+        Algo::testSimu($tmax, 1);
 } else
     if ($testGraph == false) {
 
         if (! isset($tmax)) {
-            algo::testSimu(5, 1);
+            Algo::testSimu(5, 1);
         } else
-            algo::testSimu($tmax, 1);
+            Algo::testSimu($tmax, 1);
     }
 ?>
 

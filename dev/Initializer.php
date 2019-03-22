@@ -27,33 +27,4 @@ class Initializer
         }
         return $lagons;
     }
-
-    public static function initHorloge($anemones, $lagons) {
-        $horloge = new Horloge();
-
-        foreach ($anemones as $a) {
-            $a_id = $a->get('id');
-
-            $l_a = algo::lagon($a);
-            $horloge->set($a_id, 'MortFemelle', $l_a->get('eF')
-                ->get('rate'));
-            $horloge->set($a_id, 'MortMale', $l_a->get('eM')
-                ->get('rate'));
-            $horloge->set($a_id, 'MortJuvenile', ($l_a->get('eJ')
-                    ->get('rate') * $a->nbJuvenile()));
-
-            foreach ($lagons as $l) {
-                $l_id = $l->get('id');
-                $nbFemelle_l = nbFemelle($l);
-                $nbFemelle_l_a = nbFemelle($l_a);
-                $horloge->set($a_id, "recrutementLagon$l_id", (algo::tauxRecrutement($l, $l_a) * $nbFemelle_l) / $nbFemelle_l_a);
-            }
-
-            $horloge->set($a_id, 'Immigration', $l_a->get('eI')
-                    ->get('rate') / $nbFemelle_l_a);
-        }
-        return $horloge;
-
-    }
-
 }

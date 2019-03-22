@@ -9,7 +9,7 @@ switch ($typeSimulation){
         break;
     case 'detaillee':
         $testGraph = false;
-        require 'algo.php';
+        require 'Algo.php';
         break;
 }
 ?>

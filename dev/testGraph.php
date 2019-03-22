@@ -2,8 +2,8 @@
 $time_start = microtime(true);
 
 $testGraph = true;
-require_once('algo.php');
-$al = new algo();
+require_once('Algo.php');
+$al = new Algo();
 $al->startSimulation($tmax, 0);
 $populationOnceAWeek = Utils::lagonPopSorted_array('../output/lagonPopulationSortedOnceAWeek.ini');
 $i = 0;

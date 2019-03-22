@@ -1,5 +1,5 @@
 
-<form action="zaearf/dev/simulation.php" method="get">
+<form action="simulation.php" method="get">
 		<label for="year">Nombre d'annee</label>
 		<input id="year" name="year" value="0" step="1" max="150" min="0" type="number">
 		<br><br>
