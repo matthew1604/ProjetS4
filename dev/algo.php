@@ -23,10 +23,6 @@ class algo
 
         $this->initAnemones($a_file);
         $this->initLagon($l_file);
-
-        // $this->initParametresSimu();
-
-        // Create the big ben;
         $this->initHorloge();
     }
 
@@ -74,12 +70,10 @@ class algo
             $t = $t + $r;
 
             $interval = new DateInterval(
-                'PT' . (int) Utils::yearsToSeconds($r) . 'S'); // Crï¿½ation
-            // d'un
-            // interavalle
-            // de
-            // $r
-            // secondes
+                'PT' . (int) Utils::yearsToSeconds($r) . 'S');
+
+            // Création d'un interavalle de $r secondes
+
             $futureDate = date_add($futureDate, $interval); // Ajout de
             // $interval a la
             // date temporaire
@@ -211,7 +205,7 @@ class algo
 
     /*
      * Initialise l'horloge
-     * Methode : CrÃ©e une nouvelle horloge
+     * Methode : Crée une nouvelle horloge
      * Description de cette methode dans la doc.
      */
     private function initHorloge ()

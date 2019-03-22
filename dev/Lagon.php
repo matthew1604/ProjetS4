@@ -5,7 +5,7 @@ require_once("Anemone.php");
 require_once("Utils.php");
 
 
-//WARNING : require_once rajouté sinon test impossible (Nathan)
+//WARNING : require_once rajouté sinon tests impossibles
 require_once("Event.php");
 
 class Lagon{

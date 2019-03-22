@@ -160,24 +160,29 @@ class Utils
          */      
         $i = 0;
         if($needle != 0){
-            
-            while ($i <= sizeof($arrayOfLines)) {
-                $min = ((double) ($arrayOfLines[$i])) / ($needle);
-                $max = ((double) $arrayOfLines[$i + 2]) / ($needle);
-                if ($min <= 1 && $max >= 1) {
-                    if (1 - $min < ($max - 1)) {
-                        return $arrayOfLines[$i + 1];
+
+            while ($i <= sizeof($arrayOfLines)-1) {
+                if (!empty($arrayOfLines)) { //correction: if pour passer les tests
+                    $min = ((double)($arrayOfLines[$i])) / ($needle);
+                    $max = ((double)$arrayOfLines[$i + 2]) / ($needle);
+                    if ($min <= 1 && $max >= 1) {
+                        if (1 - $min < ($max - 1)) {
+                            return $arrayOfLines[$i + 1];
+                        } else {
+                            return $arrayOfLines[$i + 3];
+                        }
                     } else {
-                        return $arrayOfLines[$i + 3];
+                        $i = $i + 2;
                     }
                 } else {
-                    $i = $i + 2;
+                    break;
                 }
             }
         }
         return false;
     }
 
+    //Si tmax = 0
     public static function sortingResults ($tmax, $fileName)
     {
         $nbSemaines = 10;
@@ -185,6 +190,7 @@ class Utils
         $diviseur = $tmax / $nbAffichage;
         
         $arrayOfLines = file($fileName);
+
         
         $needle = 0;
         
@@ -199,7 +205,7 @@ class Utils
             } 
             $needle = $needle + $diviseur;
         }
-        
+        //print_r($populations_array);
         return $populations_array;
     }
     
@@ -213,10 +219,10 @@ class Utils
             $line = $file[$i];
             $values = explode(" ", $line);
             unset($values[0]);
-            unset($values[9]);
+            //unset($values[9]); avant correction
+            unset($values[10]); //après correction
             array_push($results, $values);               
         }
-        
         return $results;
     }
 }

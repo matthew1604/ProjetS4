@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: znath
- * Date: 19/03/2019
- * Time: 22:01
- */
+
 require_once("Anemone.php");
 require_once("Lagon.php");
 class Initializer

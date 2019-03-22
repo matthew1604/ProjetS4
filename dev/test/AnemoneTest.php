@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: znath
- * Date: 20/03/2019
- * Time: 11:07
- */
+
 
 require_once("../Anemone.php");
 require_once("../AnemoneForTest.php");

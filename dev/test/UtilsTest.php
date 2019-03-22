@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: znath
- * Date: 19/03/2019
- * Time: 21:05
- */
+
 require_once("../Utils.php");
 
 class UtilsTest extends PHPUnit\Framework\TestCase
@@ -97,8 +92,7 @@ class UtilsTest extends PHPUnit\Framework\TestCase
     }
 
     public function testTireExp() {
-        // TEST USELESS CAR
-        // log10(0) = INF et log10(1) = 0
+        // log10(0) = INF donc inutile à tester
 
         //given
         $l = 640;
@@ -114,5 +108,38 @@ class UtilsTest extends PHPUnit\Framework\TestCase
         //then
         $this->assertTrue($actual >= $minExpected);
         $this->assertTrue($actual <= $maxExpected);
+    }
+
+    public function testFileFinding() {
+        //given
+        $array1 = array(0, 0, 5, 1);
+        $needle1 = 1;
+        $expected1 = $array1[1];
+
+        $array2 = array(0.5, 0, 1, 1);
+        $needle2 = 1;
+        $expected2 = $array2[3];
+
+        $array3 = array(0, 0, 5, 1);
+        $needle3 = 100;
+
+
+
+
+
+        //when
+        $actualFalse = Utils::fileFinding(0, array());
+        $actualArrayEmpty = Utils::fileFinding(5, array());
+        $actual1 = Utils::fileFinding($needle1, $array1);
+        $actual2 = Utils::fileFinding($needle2, $array2);
+        $actual3 = Utils::fileFinding($needle3, $array3);
+
+
+        //then
+        $this->assertFalse($actualFalse);
+        $this->assertFalse($actualArrayEmpty);
+        $this->assertEquals($expected1, $actual1);
+        $this->assertEquals($expected2, $actual2);
+        $this->assertFalse($actual3);
     }
 }
